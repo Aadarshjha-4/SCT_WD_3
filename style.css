@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #111, #222);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #0ff, #00f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mode-select button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background: #0ff;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.mode-select button:hover {
+  background: #00c8d6;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #333;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.cell:hover {
+  background: #444;
+}
+
+.status {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.reset-btn {
+  padding: 0.5rem 1rem;
+  background: #f00;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-btn:hover {
+  background: #c00;
+}
+
+@media (max-width: 500px) {
+  .board {
+    grid-template-columns: repeat(3, 70px);
+  }
+  .cell {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+}
+/* Ambient Lighting Background Effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, #00f0ff88, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatLight 8s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at center, #ff007788, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatLightReverse 10s ease-in-out infinite;
+}
+
+@keyframes floatLight {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(20px) translateX(15px); }
+}
+
+@keyframes floatLightReverse {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-15px) translateX(-10px); }
+}
+
+/* Make sure main content is above ambient lights */
+.game-container {
+  position: relative;
+  z-index: 1;
+}
